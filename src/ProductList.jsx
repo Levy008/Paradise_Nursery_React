@@ -1,6 +1,6 @@
 import './ProductListingPage.css'
 
-function ProductListingPage({
+function ProductList({
   plants,
   cartItems,
   cartCount,
@@ -74,4 +74,4 @@ function ProductListingPage({
   )
 }
 
-export default ProductListingPage
+export default ProductList

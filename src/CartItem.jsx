@@ -1,6 +1,6 @@
 import './ShoppingCartPage.css'
 
-function ShoppingCartPage({
+function CartItem({
   cartItems,
   cartCount,
   onIncreaseQuantity,
@@ -96,4 +96,4 @@ function ShoppingCartPage({
   )
 }
 
-export default ShoppingCartPage
+export default CartItem

@@ -1,13 +1,24 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
 import LandingPage from './LandingPage'
-import ProductListingPage from './ProductListingPage'
-import ShoppingCartPage from './ShoppingCartPage'
+import ProductList from './ProductList'
+import CartItem from './CartItem'
 import { plants } from './plants'
+import {
+  addToCart,
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+  selectCartCount,
+  selectCartItems,
+} from './CartSlice'
 
 function App() {
   const [activePage, setActivePage] = useState('landing')
-  const [cartItems, setCartItems] = useState([])
+  const dispatch = useDispatch()
+  const cartItems = useSelector(selectCartItems)
+  const cartCount = useSelector(selectCartCount)
 
   const handleGetStarted = () => {
     setActivePage('products')
@@ -25,52 +36,6 @@ function App() {
     setActivePage('products')
   }
 
-  const handleAddToCart = (plant) => {
-    setCartItems((currentItems) => {
-      const existingItem = currentItems.find((item) => item.id === plant.id)
-
-      if (existingItem) {
-        return currentItems.map((item) =>
-          item.id === plant.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
-        )
-      }
-
-      return [...currentItems, { ...plant, quantity: 1 }]
-    })
-  }
-
-  const handleIncreaseQuantity = (plantId) => {
-    setCartItems((currentItems) =>
-      currentItems.map((item) =>
-        item.id === plantId
-          ? { ...item, quantity: item.quantity + 1 }
-          : item,
-      ),
-    )
-  }
-
-  const handleDecreaseQuantity = (plantId) => {
-    setCartItems((currentItems) =>
-      currentItems
-        .map((item) =>
-          item.id === plantId
-            ? { ...item, quantity: item.quantity - 1 }
-            : item,
-        )
-        .filter((item) => item.quantity > 0),
-    )
-  }
-
-  const handleRemoveFromCart = (plantId) => {
-    setCartItems((currentItems) =>
-      currentItems.filter((item) => item.id !== plantId),
-    )
-  }
-
-  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0)
-
   return (
     <>
       {activePage === 'landing' && (
@@ -78,23 +43,27 @@ function App() {
       )}
 
       {activePage === 'products' && (
-        <ProductListingPage
+        <ProductList
           plants={plants}
           cartItems={cartItems}
           cartCount={cartCount}
-          onAddToCart={handleAddToCart}
+          onAddToCart={(plant) => dispatch(addToCart(plant))}
           onShowHome={handleShowLanding}
           onShowCart={handleShowCart}
         />
       )}
 
       {activePage === 'cart' && (
-        <ShoppingCartPage
+        <CartItem
           cartItems={cartItems}
           cartCount={cartCount}
-          onIncreaseQuantity={handleIncreaseQuantity}
-          onDecreaseQuantity={handleDecreaseQuantity}
-          onRemoveFromCart={handleRemoveFromCart}
+          onIncreaseQuantity={(plantId) =>
+            dispatch(increaseQuantity(plantId))
+          }
+          onDecreaseQuantity={(plantId) =>
+            dispatch(decreaseQuantity(plantId))
+          }
+          onRemoveFromCart={(plantId) => dispatch(removeFromCart(plantId))}
           onShowHome={handleShowLanding}
           onShowProducts={handleShowProducts}
         />
