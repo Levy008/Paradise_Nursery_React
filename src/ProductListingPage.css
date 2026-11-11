@@ -1,0 +1,196 @@
+.product-page,
+.cart-page {
+  min-height: 100svh;
+  padding: 0;
+  color: #171a17;
+  background: #f3f4f3;
+}
+
+.product-page .store-header,
+.cart-page .store-header {
+  max-width: none;
+  padding: 10px 24px;
+  color: #fff;
+  background: #48ad4f;
+  border-bottom: 0;
+}
+
+.brand-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  color: #fff;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.brand-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  color: #48ad4f;
+  background: #fff;
+  font-size: 1.5rem;
+}
+
+.brand-button strong,
+.brand-button small {
+  display: block;
+}
+
+.brand-button strong {
+  font-size: 1.35rem;
+}
+
+.brand-button small {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.store-title {
+  font-size: 1.55rem;
+}
+
+.cart-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 0;
+  color: #fff;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 1.65rem;
+}
+
+.product-catalog {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
+}
+
+.plant-category {
+  margin-bottom: 42px;
+}
+
+.plant-category h1 {
+  width: fit-content;
+  margin: 0 auto 30px;
+  padding: 0 42px 5px;
+  border-top: 2px solid #444;
+  border-bottom: 2px solid #444;
+  color: #161616;
+  font-size: 1.65rem;
+  text-align: center;
+}
+
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 38px;
+}
+
+.plant-card {
+  position: relative;
+  display: flex;
+  min-height: 330px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  flex-direction: column;
+}
+
+.plant-card h2 {
+  margin: 0 0 9px;
+  font-size: 0.9rem;
+}
+
+.plant-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.sale-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 8px;
+  color: #fff;
+  background: #e65143;
+  font-size: 0.75rem;
+}
+
+.plant-price {
+  margin: 6px 0 3px;
+  color: #c75850;
+  font-weight: 700;
+}
+
+.plant-description {
+  min-height: 38px;
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.plant-card button,
+.empty-cart button,
+.cart-content > button {
+  padding: 7px 16px;
+  border: 0;
+  color: #fff;
+  background: #48ad4f;
+  cursor: pointer;
+}
+
+.plant-card button:hover,
+.empty-cart button:hover,
+.cart-content > button:hover {
+  background: #388c3e;
+}
+
+.plant-card button.added-to-cart-button,
+.plant-card button.added-to-cart-button:hover,
+.plant-card button.added-to-cart-button:disabled {
+  color: #555;
+  background: #c9c9c9;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .product-page .store-header,
+  .cart-page .store-header {
+    padding: 9px 14px;
+  }
+
+  .store-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-button strong {
+    font-size: 1rem;
+  }
+
+  .brand-button small {
+    font-size: 0.65rem;
+  }
+
+  .plant-grid {
+    grid-template-columns: 1fr;
+  }
+}
